@@ -39,7 +39,10 @@ addTaskBtn.addEventListener("click", () => {
     const assignedTo = document.getElementById("assignedTo").value;
     const dueDate = document.getElementById("dueDate").value;
     const status = document.getElementById("taskStatus").value;
-
+    if(title === "" || assignedTo === "" || dueDate === ""){
+    alert("Please fill all fields");
+    return;
+}
     const task = {
         title,
         assignedTo,
@@ -48,7 +51,9 @@ addTaskBtn.addEventListener("click", () => {
     };
 
     tasks.push(task);
-
+    document.getElementById("taskTitle").value = "";
+document.getElementById("assignedTo").value = "";
+document.getElementById("dueDate").value = "";
     localStorage.setItem("tasks", JSON.stringify(tasks));
 
     displayTasks();
@@ -63,3 +68,9 @@ function deleteTask(index) {
 }
 
 displayTasks();
+const logoutBtn = document.getElementById("logoutBtn");
+
+logoutBtn.addEventListener("click", () => {
+    alert("Logged Out Successfully");
+    window.location.href = "login.html";
+});
